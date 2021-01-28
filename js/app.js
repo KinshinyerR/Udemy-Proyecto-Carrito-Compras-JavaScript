@@ -2,8 +2,13 @@
 const cariito = document.querySelector('#carrito');
 const contenedorCarrito = document.querySelector('#lista-carrito tbody');
 const vaciarCarritoBtn = document.querySelector('#vaciar-carrito');
+const comprarCarritoBtn = document.querySelector('#comprar-carrito');
 const listaCursos = document.querySelector('#lista-cursos');
 let articulosCarrito = [];
+// let localStorage = localStorage.getItem('listaCarrito');
+
+// console.log(localStorage);
+
 
 cargarEventListeners();
 
@@ -19,9 +24,20 @@ function cargarEventListeners(){
         articulosCarrito = []; //Reseteamos el arreglo
         limpiarHTML();         //Eliminamos todo el HTML
     })
+
+    //Boton comprar
+    comprarCarritoBtn.addEventListener('click', guardarLocalStorage)
 }
 
 /***********************Funciones****************************/ 
+
+function guardarLocalStorage(){
+    localStorage.setItem('listaCarrito', JSON.stringify(articulosCarrito));
+}
+
+function borrarLocalStorage(){
+    localStorage.removeItem('listaCarrito');
+}
 
 function agregarCurso(e){
     e.preventDefault();
